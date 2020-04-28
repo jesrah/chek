@@ -1,0 +1,10 @@
+.rowContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 3vh 20vh;
+}
+
+.row {
+    display: flex;
+    justify-content: center; 
+}

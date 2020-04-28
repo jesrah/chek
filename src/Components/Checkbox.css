@@ -1,0 +1,41 @@
+.grain {
+    border: 3px solid #d6bb22;
+    color: #d6bb22;
+    margin: 2% auto;
+    width: 33%;
+}
+.veg {
+    border: 3px solid #78caab;
+    color: #78caab;
+    margin: 2% auto;
+    width: 25%;
+}
+.protein {
+    border: 3px solid #c45e38;
+    color: #c45e38;
+    margin: 2% auto;
+    width: 33%;
+
+}
+.fat {
+    border: 3px solid rgba(255, 170, 43, 0.925);
+    color: rgba(255, 170, 43, 0.925);
+    margin: 2% auto;
+    width: 50%;
+}
+.fruit {
+    border: 3px solid rgb(255, 193, 193);
+    color: rgb(255, 193, 193);
+    margin: 2% auto;
+    width: 25%;
+}
+.box {
+    height: 100px;
+    min-width: 80px;
+    border-radius: 10px;
+    margin: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+}
