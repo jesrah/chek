@@ -4,29 +4,58 @@ import Rows from './Rows'
 class Board extends Component {
     state = {
         boxes: [
-          {type: "grain", quantity: 3, calories: 100},
-          {type: "veg", quantity: 4,  calories: 50},
-          {type: "protein", quantity: 6, calories: 50},
-          {type: "fruit", quantity: 4, "calories": 50},
-          {type: "fat", quantity: 4, "calories": 50},
+          {type: "grain", quantity: 3, calories: 100, clicked: false},
+          {type: "veg", quantity: 4,  calories: 50, clicked: false},
+          {type: "protein", quantity: 6, calories: 50, clicked: false},
+          {type: "fruit", quantity: 4, "calories": 50, clicked: false},
+          {type: "fat", quantity: 4, "calories": 50, clicked: false},
+        ],
+        boxesTwo: [
+          {type: "grain", color: "#d6bb22", calories: 100, clicked: false, key: 1},
+          {type: "grain", color: "#d6bb22", calories: 100, clicked: false, key: 2},
+          {type: "grain", color: "#d6bb22", calories: 100, clicked: false, key: 3},
+          {type: "veg", color: "#78caab",  calories: 50, clicked: false, key: 4},
+          {type: "veg", color: "#78caab",  calories: 50, clicked: false, key: 5},
+          {type: "veg", color: "#78caab",  calories: 50, clicked: false, key: 6},
+          {type: "veg", color: "#78caab",  calories: 50, clicked: false, key: 7},
+          {type: "protein", color: "#c45e38", calories: 50, clicked: false, key: 8},
+          {type: "protein", color: "#c45e38", calories: 50, clicked: false, key: 9},
+          {type: "protein", color: "#c45e38", calories: 50, clicked: false, key: 10},
+          {type: "protein", color: "#c45e38", calories: 50, clicked: false, key: 11},
+          {type: "protein", color: "#c45e38", calories: 50, clicked: false, key: 12},
+          {type: "protein", color: "#c45e38", calories: 50, clicked: false, key: 13},
+          {type: "fruit", color: "rgb(255, 193, 193)", "calories": 50, clicked: false, key: 14},
+          {type: "fruit", color: "rgb(255, 193, 193)", "calories": 50, clicked: false, key: 15},
+          {type: "fruit", color: "rgb(255, 193, 193)", "calories": 50, clicked: false, key: 16},
+          {type: "fruit", color: "rgb(255, 193, 193)", "calories": 50, clicked: false, key: 17},
+          {type: "fat", color: "rgba(255, 170, 43, 0.925)", "calories": 50, clicked: false, key: 18},
+          {type: "fat", color: "rgba(255, 170, 43, 0.925)", "calories": 50, clicked: false, key: 19},
+          {type: "fat", color: "rgba(255, 170, 43, 0.925)", "calories": 50, clicked: false, key: 20},
+          {type: "fat", color: "rgba(255, 170, 43, 0.925)", "calories": 50, clicked: false, key: 21},
         ],
         checked: 0,
         total: 1200,
       }
     
-    toggleBoxHandler = (e) => {
-        //invert colors for each box
-        // this.setState({
-            
-        // })
-        //add or subtract from the total
-    }
-    calculateConsumed = () => {
-        //count number of boxes that have the value clicked=true
+    toggleBoxHandler = (key, calories, clicked) => {
+      let checkedCount = this.state.checked;
+      let toggledClick = clicked;
+      let updatedBoxes = {...this.state.boxes}
+      //determine if it's toggled on/off (checked/unchecked)
+      if (toggledClick) {
+        checkedCount-= calories;
+      } else {
+        checkedCount+= calories;
+      }
+      updatedBoxes[key - 1]["clicked"] = !toggledClick;
+
+      this.setState({checked: checkedCount, boxes: updatedBoxes})
+      console.log('clicked!')
     }
 
     calculateTotal = () => {
-        let total = this.state.boxes.reduce((acc, ele) => {
+      let boxCopy = [...this.state.boxes]
+        let total = boxCopy.reduce((acc, ele) => {
             return acc + (ele.calories * ele.quantity)
         }, 0)
         //TO DO: instead of return total, set state.total to new total and then reference this.state.total in the div below
@@ -35,7 +64,7 @@ class Board extends Component {
     render () {
         return (
             <div>
-                <Rows toggleHandler={() => {this.toggleBoxHandler()}} boxes={this.state.boxes} checked={this.state.checked} total={this.state.total} />
+                <Rows toggleBox={this.toggleBoxHandler} boxes={this.state.boxes} checked={this.state.checked} total={this.state.total} />
                 <div class="displayTotal">Today: {this.state.checked}/{this.calculateTotal()}</div>
             </div>
         )

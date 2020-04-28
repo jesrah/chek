@@ -9,7 +9,14 @@ const Rows = (props) => {
     const addBoxesToRow = (obj) => {
         let array = [];
         for (let i = 0; i < obj.quantity; i++) {
-            array.push (<Checkbox onClick={props.toggleHandler} className="box" key={obj.type + i} type={obj.type} calories={obj.calories} clicked="false" />)
+            array.push (<Checkbox 
+                            toggleBox={() => props.toggleBox((obj.type + i), obj.calories, obj.clicked)} 
+                            className="box" 
+                            key={obj.type + i} 
+                            type={obj.type} 
+                            calories={obj.calories} 
+                            clicked={obj.clicked} 
+                        />)
         }
         return array;
     }
