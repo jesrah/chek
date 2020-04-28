@@ -3,39 +3,42 @@ import Checkbox from './Checkbox';
 import './Rows.css';
 const Rows = (props) => {
     let boxes = props.boxes;
-    let checked = props.checked;
-    let total = props.total;
 
-    const addBoxesToRow = (obj) => {
-        let array = [];
-        for (let i = 0; i < obj.quantity; i++) {
-            array.push (<Checkbox 
-                            toggleBox={() => props.toggleBox((obj.type + i), obj.calories, obj.clicked)} 
-                            className="box" 
-                            key={obj.type + i} 
-                            type={obj.type} 
-                            calories={obj.calories} 
-                            clicked={obj.clicked} 
-                        />)
+    const groupBoxesByType = (arr) => {
+        let outer = [];
+        let inner = [];
+        for (let i = 0; i < arr.length; i++) {
+            let current = (<Checkbox
+                toggleBox={() => {
+                    return props.toggleBox((i), arr[i].calories, arr[i].clicked);
+                }} 
+                className="box" 
+                type={arr[i].type} 
+                calories={arr[i].calories} 
+                clicked={arr[i].clicked} 
+                key={arr[i].key} 
+                />);
+            if (i === arr.length - 1 || arr[i].type !== arr[i+1].type) {
+                inner.push(current);
+                outer.push(inner);
+                inner = [];
+            } else if (arr[i].type === arr[i+1].type) {
+                inner.push(current)
+            }
         }
-        return array;
+        return outer;
     }
-
-    //this is the same as writing out 
-    //<div className="grainRow row">{transformBoxes(boxes[0])}</div>
-    //<div className="fatRow row">{transformBoxes(boxes[4])}</div>
-    //etc
     const transformRows = (arr) => {
         let allRows = [];
         for (let i = 0; i < arr.length; i++) {
-            allRows.push(<div className={arr[i].type + "Row row"}>{addBoxesToRow(boxes[i])}</div>)
+            let slice = arr.slice(i, i+1);
+            allRows.push(<div className={slice[0].type + "Row row"}>{slice}</div>)
         }
         return allRows;
     }
-
     return (
         <div className="rowContainer">
-        {transformRows(boxes)}
+        {transformRows(groupBoxesByType(boxes))}
         </div>
     )
 }
