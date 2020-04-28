@@ -1,3 +1,42 @@
-.Board {
-    
+
+.boardContainer {
+    display: flex;
+    margin: 0 auto;
+    width: 70vw;
+}
+
+.boardContainer p {
+    border: 3px solid white;
+    height: 106px;
+    margin: 4px;
+    font-weight: bolder;
+}
+
+.sidebar {
+    margin: 3vh 0 3vh 3vh;
+}
+
+.displayTotal {
+    margin-left: 50px;
+    padding-left: 15px;
+}
+
+.grCol {
+    color: #d6bb22;
+}
+
+.vgCol {
+    color: #78caab;
+}
+
+.prCol {
+    color: #c45e38;
+}
+
+.frCol {
+    color: rgb(255, 193, 193);
+}
+
+.faCol {
+    color: rgba(255, 170, 43, 0.925);
 }

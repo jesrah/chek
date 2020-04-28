@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Rows from './Rows'
+import Rows from './Rows';
+import './Board.css';
 
 class Board extends Component {
     state = {
@@ -26,6 +27,7 @@ class Board extends Component {
           {type: "fat", color: "rgba(255, 170, 43, 0.925)", "calories": 50, clicked: false, key: 19},
           {type: "fat", color: "rgba(255, 170, 43, 0.925)", "calories": 50, clicked: false, key: 20},
         ],
+        types: ["grain", "veg", "protein", "fruit", "fat"],
         checked: 0,
         total: 1200,
       }
@@ -55,10 +57,24 @@ class Board extends Component {
     }
     render () {
         return (
-            <div>
-                <Rows toggleBox={this.toggleBoxHandler} boxes={this.state.boxes} checked={this.state.checked} total={this.state.total} />
-                <div class="displayTotal">Today: {this.state.checked}/{this.calculateTotal()}</div>
+          <div>
+            <div className="boardContainer">
+                <div className="sidebar">
+                  <p className="grCol">grain</p>
+                  <p className="vgCol">veg</p>
+                  <p className="prCol">protein</p>
+                  <p className="frCol">fruit</p>
+                  <p className="faCol">fat</p>
+                </div>
+                <Rows 
+                  toggleBox={this.toggleBoxHandler} 
+                  boxes={this.state.boxes} 
+                  checked={this.state.checked} 
+                  total={this.state.total}
+                  types={this.state.types} />
             </div>
+            <div className="displayTotal">Today: {this.state.checked}/{this.calculateTotal()}</div>
+          </div>
         )
     }
 }

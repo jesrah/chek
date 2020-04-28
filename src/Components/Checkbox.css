@@ -4,11 +4,20 @@
     margin: 2% auto;
     width: 33%;
 }
+.grain.toggleOn {
+    color: white;
+    background-color: #d6bb22;
+
+}
 .veg {
     border: 3px solid #78caab;
     color: #78caab;
     margin: 2% auto;
     width: 25%;
+}
+.veg.toggleOn {
+    color: white;
+    background-color: #78caab;
 }
 .protein {
     border: 3px solid #c45e38;
@@ -17,17 +26,29 @@
     width: 33%;
 
 }
+.protein.toggleOn{
+    color: white;
+    background-color: #c45e38;
+}
 .fat {
     border: 3px solid rgba(255, 170, 43, 0.925);
     color: rgba(255, 170, 43, 0.925);
     margin: 2% auto;
     width: 50%;
 }
+.fat.toggleOn {
+    color: white;
+    background-color: rgba(255, 170, 43, 0.925);
+}
 .fruit {
     border: 3px solid rgb(255, 193, 193);
     color: rgb(255, 193, 193);
     margin: 2% auto;
     width: 25%;
+}
+.fruit.toggleOn{
+    color: white;
+    background-color: rgb(255, 193, 193) ;
 }
 .box {
     height: 100px;

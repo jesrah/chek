@@ -3,16 +3,17 @@ import Checkbox from './Checkbox';
 import './Rows.css';
 const Rows = (props) => {
     let boxes = props.boxes;
+    let types = props.types;
 
     const groupBoxesByType = (arr) => {
+        //TO DO: Make outer an object instead with types (like grain) as keys, with the "inner" array as its value
         let outer = [];
         let inner = [];
         for (let i = 0; i < arr.length; i++) {
             let current = (<Checkbox
                 toggleBox={() => {
                     return props.toggleBox((i), arr[i].calories, arr[i].clicked);
-                }} 
-                className="box" 
+                }}  
                 type={arr[i].type} 
                 calories={arr[i].calories} 
                 clicked={arr[i].clicked} 
@@ -32,7 +33,7 @@ const Rows = (props) => {
         let allRows = [];
         for (let i = 0; i < arr.length; i++) {
             let slice = arr.slice(i, i+1);
-            allRows.push(<div className={slice[0].type + "Row row"}>{slice}</div>)
+            allRows.push(<div className={types[i] + "Row row"} key={types[i] + "Row"}>{slice}</div>)
         }
         return allRows;
     }
